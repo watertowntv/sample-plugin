@@ -6,7 +6,7 @@ class EventManager : Listener {
 
     @Suppress("unused")
     @EventHandler
-    fun onReload(event: ServerResourcesReloadedEvent){
+    fun onReload(event: ServerResourcesReloadedEvent) {
         Main.plugin.reloadConfig()
     }
 }
