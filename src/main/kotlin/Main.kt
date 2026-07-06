@@ -36,7 +36,7 @@ class Main : JavaPlugin() {
     private fun registerCommand() {
         registerCommandTree("sample") {
             requiresOp()
-            execute { context -> context.source.sender.sendCommandMessage() }
+            execute { it.source.sender.sendCommandMessage() }
 
             leaf("test") { context ->
                 context.source.sender.sendMessage(text("Hello, world!"))

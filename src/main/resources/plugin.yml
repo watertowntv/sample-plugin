@@ -2,5 +2,5 @@ main: Main
 name: Sample
 version: 1.0
 depend: [ Kotlin, Zycos ]
-api-version: '26.1.2'
+api-version: '26.2'
 author: 5zaqws
