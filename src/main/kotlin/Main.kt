@@ -19,7 +19,7 @@ class Main : JavaPlugin() {
     override fun onEnable() {
         plugin = this
 
-        if(createConfigFile(plugin)) {
+        if (createConfigFile(plugin)) {
             componentLogger.info(text("New config file generated!"))
         }
 

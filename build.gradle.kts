@@ -56,6 +56,11 @@ tasks {
     build {
         dependsOn(shadowJar)
     }
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        compilerOptions {
+            freeCompilerArgs.add("-XXLanguage:+UnnamedLocalVariables")
+        }
+    }
 }
 
 paperweight {
