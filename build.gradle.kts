@@ -2,13 +2,13 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     java
-    kotlin("jvm") version "2.4.0"
+    kotlin("jvm") version "2.4.10"
 
-    id("com.gradleup.shadow") version "9.4.2"
+    id("com.gradleup.shadow") version "9.6.1"
     id("io.papermc.paperweight.userdev") version "2.0.0-beta.21"
 }
 
-group = properties["group"]!!
+group = providers.gradleProperty("group").get()
 
 repositories {
     mavenLocal()
@@ -22,7 +22,7 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
 
-    compileOnly("org.junit.jupiter:junit-jupiter:6.1.0")
+    compileOnly("org.junit.jupiter:junit-jupiter:6.1.2")
     compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
 
     compileOnly("io.papermc.paper:paper-api:26.2.build.+")
@@ -46,9 +46,7 @@ tasks {
         compilerOptions.jvmTarget.set(JvmTarget.JVM_25)
     }
     processResources {
-        filesMatching("**/*.yml") {
-            expand(project.properties)
-        }
+        filteringCharset = "UTF-8"
     }
     shadowJar {
         archiveClassifier.set("dist")
