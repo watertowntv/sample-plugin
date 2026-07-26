@@ -26,7 +26,7 @@ dependencies {
     compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
 
     compileOnly("io.papermc.paper:paper-api:26.2.build.+")
-    compileOnly("5zaqws:zycos:1.0")
+    compileOnly("5zaqws:zycos:+")
 
     paperweight.paperDevBundle("26.2.build.+")
 }

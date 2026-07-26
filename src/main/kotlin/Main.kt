@@ -5,6 +5,7 @@ import zaqws.zycos.CoroutineManager
 import zaqws.zycos.createConfigFile
 import zaqws.zycos.execute
 import zaqws.zycos.leaf
+import zaqws.zycos.register
 import zaqws.zycos.registerCommandTree
 import zaqws.zycos.requiresOp
 import zaqws.zycos.text
@@ -23,7 +24,7 @@ class Main : JavaPlugin() {
             componentLogger.info(text("New config file generated!"))
         }
 
-        server.pluginManager.registerEvents(EventManager(), plugin)
+        EventManager().register(plugin)
 
         registerCommand()
     }
