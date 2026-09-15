@@ -1,5 +1,8 @@
+import io.papermc.paper.event.server.ServerResourcesReloadedEvent
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.command.CommandSender
+import org.bukkit.event.EventHandler
+import org.bukkit.event.Listener
 import org.bukkit.plugin.java.JavaPlugin
 import zaqws.zycos.CoroutineManager
 import zaqws.zycos.createConfigFile
@@ -10,7 +13,7 @@ import zaqws.zycos.registerCommandTree
 import zaqws.zycos.requiresOp
 import zaqws.zycos.text
 
-class Main : JavaPlugin() {
+class Main : JavaPlugin(), Listener {
     companion object {
         lateinit var plugin: Main
             private set
@@ -24,9 +27,8 @@ class Main : JavaPlugin() {
             componentLogger.info(text("New config file generated!"))
         }
 
-        EventManager().register(plugin)
-
         registerCommand()
+        register(this)
     }
 
     override fun onDisable() {
@@ -59,4 +61,8 @@ class Main : JavaPlugin() {
         sendMessage(text("By ${pluginMeta.authors.joinToString(", ")}", NamedTextColor.GOLD))
         sendMessage(text("-".repeat(offset.length * 2 + name.length - 1), NamedTextColor.GOLD))
     }
+
+    @Suppress("unused")
+    @EventHandler
+    private fun onReload(event: ServerResourcesReloadedEvent) = reloadConfig()
 }
