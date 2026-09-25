@@ -11,7 +11,9 @@ import zaqws.zycos.leaf
 import zaqws.zycos.register
 import zaqws.zycos.registerCommandTree
 import zaqws.zycos.requiresOp
+import zaqws.zycos.sender
 import zaqws.zycos.text
+import zaqws.zycos.unregister
 
 class Main : JavaPlugin(), Listener {
     companion object {
@@ -32,6 +34,7 @@ class Main : JavaPlugin(), Listener {
     }
 
     override fun onDisable() {
+        unregister()
         CoroutineManager.cancel(this)
     }
 
@@ -39,10 +42,10 @@ class Main : JavaPlugin(), Listener {
     private fun registerCommand() {
         registerCommandTree("sample") {
             requiresOp()
-            execute { it.source.sender.sendCommandMessage() }
+            execute { it.sender.sendCommandMessage() }
 
             leaf("test") { context ->
-                context.source.sender.sendMessage(text("Hello, world!"))
+                context.sender.sendMessage(text("Hello, world!"))
             }
         }
     }

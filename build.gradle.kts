@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     java
     kotlin("jvm") version "2.4.10"
+    kotlin("plugin.serialization") version "2.4.10"
 
     id("com.gradleup.shadow") version "9.6.1"
     id("io.papermc.paperweight.userdev") version "2.0.0-beta.22"
@@ -24,6 +25,7 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter:6.1.2")
     compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
+    compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-cbor:1.11.0")
 
     paperweight.paperDevBundle("26.2.build.+")
 
