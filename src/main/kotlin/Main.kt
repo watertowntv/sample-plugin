@@ -1,19 +1,8 @@
 import io.papermc.paper.event.server.ServerResourcesReloadedEvent
-import net.kyori.adventure.text.format.NamedTextColor
-import org.bukkit.command.CommandSender
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.plugin.java.JavaPlugin
-import zaqws.zycos.CoroutineManager
-import zaqws.zycos.createConfigFile
-import zaqws.zycos.execute
-import zaqws.zycos.leaf
-import zaqws.zycos.register
-import zaqws.zycos.registerCommandTree
-import zaqws.zycos.requiresOp
-import zaqws.zycos.sender
-import zaqws.zycos.text
-import zaqws.zycos.unregister
+import zaqws.zycos.*
 
 class Main : JavaPlugin(), Listener {
     companion object {
@@ -42,7 +31,6 @@ class Main : JavaPlugin(), Listener {
     private fun registerCommand() {
         registerCommandTree("sample") {
             requiresOp()
-            execute { it.sender.sendCommandMessage() }
 
             leaf("test") { context ->
                 context.sender.sendMessage(text("Hello, world!"))
@@ -50,20 +38,6 @@ class Main : JavaPlugin(), Listener {
         }
     }
 
-
-    private fun CommandSender.sendCommandMessage() {
-        val amount = 32
-        val name = pluginMeta.name
-        val offset = "-".repeat((amount - name.length) / 2)
-
-        sendMessage(text("$offset$name$offset", NamedTextColor.GOLD))
-        // Edit ==============================================================
-        sendMessage(text("/sample test", NamedTextColor.GOLD))
-        // Edit ==============================================================
-        sendMessage(text(""))
-        sendMessage(text("By ${pluginMeta.authors.joinToString(", ")}", NamedTextColor.GOLD))
-        sendMessage(text("-".repeat(offset.length * 2 + name.length - 1), NamedTextColor.GOLD))
-    }
 
     @Suppress("unused")
     @EventHandler
