@@ -2,11 +2,11 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     java
-    kotlin("jvm") version "2.4.10"
-    kotlin("plugin.serialization") version "2.4.10"
+    kotlin("jvm") version "2.4.21"
+    kotlin("plugin.serialization") version "2.4.21"
 
     id("com.gradleup.shadow") version "9.6.1"
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.22"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.24"
 }
 
 group = providers.gradleProperty("group").get()
@@ -23,11 +23,11 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
 
-    testImplementation("org.junit.jupiter:junit-jupiter:6.1.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:6.1.3")
     compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
     compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-cbor:1.11.0")
 
-    paperweight.paperDevBundle("26.2.build.+")
+    paperweight.paperDevBundle("26.3.build.+")
 
     compileOnly("5zaqws:zycos:+")
 }
